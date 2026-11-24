@@ -47,9 +47,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv11', 'ss01';
-  transition:
-    background-color var(--dur-3) var(--ease-out),
-    color var(--dur-3) var(--ease-out);
+  /*
+   * No colour transition here on purpose. Child elements inherit the animating
+   * colour, so a 300 ms+ background transition leaves text unreadable while the
+   * page crosses themes. Theme changes are instant; hover states still animate.
+   */
 }
 
 img,

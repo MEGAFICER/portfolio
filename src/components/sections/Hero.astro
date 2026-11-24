@@ -206,6 +206,17 @@ const mailto = `mailto:${profile.email}`;
     color: var(--text);
   }
 
+  @media (max-width: 30rem) {
+    .hero__eyebrow {
+      letter-spacing: var(--tracking-wide);
+      font-size: var(--step--2);
+    }
+
+    .hero__dot {
+      display: none;
+    }
+  }
+
   @media (max-width: 58rem) {
     .hero__inner {
       grid-template-columns: minmax(0, 1fr);
