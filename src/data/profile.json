@@ -1,0 +1,54 @@
+{
+  "name": "Khang Nguyen Tran",
+  "preferredName": "Khang Tran",
+  "role": "Physical Design Engineer",
+  "headline": "I take advanced-node blocks from netlist to GDSII — floorplan, CTS, timing closure and signoff — and leave behind a flow the next engineer can run without me.",
+  "summary": "Physical Design Engineer with 3.5 years of hands-on netlist-to-GDSII ownership on taped-out blocks in 7nm, 16nm and 14nm-class designs. I have closed timing, congestion and physical verification on blocks from 13K to 3.7M instances, up to ~801 MHz, and I work the way senior PD engineers are expected to: diagnose before optimizing, script the repetitive work, and take a block to signoff rather than to \"mostly done\".",
+  "location": {
+    "city": "Ottawa",
+    "region": "Ontario",
+    "country": "Canada",
+    "display": "Ottawa, Ontario, Canada"
+  },
+  "email": "ktran037@uottawa.ca",
+  "phone": {
+    "display": "+1 (942) 588-2707",
+    "href": "+19425882707"
+  },
+  "availability": {
+    "status": "Open to Winter 2027 internships and Summer 2027 co-op terms",
+    "note": "Eligible to work up to 24 hours per week during the Winter 2027 term, and full-time (40 hours per week) for Summer 2027 co-op terms.",
+    "terms": [
+      {
+        "term": "Winter 2027",
+        "detail": "Internship · up to 24 h/week during the study term"
+      },
+      {
+        "term": "Summer 2027",
+        "detail": "Co-op · full-time, 40 h/week"
+      }
+    ],
+    "regions": ["Ottawa", "Montréal", "Toronto"],
+    "modes": ["On-site", "Hybrid", "Remote"]
+  },
+  "targetRoles": [
+    "Physical design implementation",
+    "Static timing analysis (STA)",
+    "Physical verification and signoff"
+  ],
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/khangnguyentran",
+    "github": "https://github.com/MEGAFICER"
+  },
+  "languages": [
+    { "name": "English", "level": "Professional" },
+    { "name": "Vietnamese", "level": "Native" }
+  ],
+  "impact": [
+    { "value": "3.5", "unit": "yrs", "label": "ASIC physical design" },
+    { "value": "4", "unit": "blocks", "label": "Taken to tape-out" },
+    { "value": "3.7", "unit": "M", "label": "Largest block, instances" },
+    { "value": "801", "unit": "MHz", "label": "Highest block clock" },
+    { "value": "2", "unit": "interns", "label": "Mentored to signoff" }
+  ]
+}

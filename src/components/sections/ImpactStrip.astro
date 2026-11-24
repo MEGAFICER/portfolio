@@ -1,0 +1,71 @@
+---
+import { profile } from '../../data';
+---
+
+<section class="impact" aria-label="Career at a glance">
+  <div class="container">
+    <dl class="impact__grid reveal">
+      {profile.impact.map((item) => (
+        <div class="impact__item">
+          <dt class="impact__label">{item.label}</dt>
+          <dd class="impact__value numeric">
+            {item.value}
+            <span class="impact__unit">{item.unit}</span>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .impact {
+    background: var(--surface);
+    border-bottom: var(--hairline) solid var(--border);
+    padding-block: var(--space-5);
+  }
+
+  .impact__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+    gap: var(--space-4);
+    margin: 0;
+  }
+
+  .impact__item {
+    display: grid;
+    gap: 0.15rem;
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--border);
+  }
+
+  .impact__item:first-child {
+    border-left-color: var(--accent);
+  }
+
+  .impact__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-faint);
+    order: 2;
+  }
+
+  .impact__value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin: 0;
+    font-size: var(--step-3);
+    font-weight: 500;
+    color: var(--text);
+    order: 1;
+  }
+
+  .impact__unit {
+    font-size: var(--step--1);
+    letter-spacing: 0;
+    color: var(--accent);
+  }
+</style>

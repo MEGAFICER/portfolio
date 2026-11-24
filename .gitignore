@@ -1,0 +1,36 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# test output
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
+
+# generated assets (produced by `npm run assets` during build)
+public/resume/*.pdf
+public/og/*.png
+public/apple-touch-icon.png
+
+# environment
+.env
+.env.*
+
+# source documents stay with the owner, never in the published repository
+khang-tran-work-experience-details.docx
+khang-tran-linkedin-pdf-*.pdf
+*.docx
+*.doc
+!.env.example
+
+# editor / OS
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea/

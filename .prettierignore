@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.astro/
+coverage/
+playwright-report/
+test-results/
+package-lock.json
+public/resume/*.pdf
+public/og/*.png
+public/apple-touch-icon.png

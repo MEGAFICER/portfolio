@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Khang Nguyen Tran">
+  <rect width="64" height="64" rx="8" fill="#0a0d10" />
+  <rect x="3.5" y="3.5" width="57" height="57" rx="6" fill="none" stroke="#354150" />
+  <path d="M10 10h8M10 10v8M54 54h-8M54 54v-8" stroke="#f0995e" stroke-width="2" fill="none" />
+  <text
+    x="32"
+    y="39.5"
+    text-anchor="middle"
+    font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+    font-size="21"
+    font-weight="600"
+    letter-spacing="-0.5"
+    fill="#e9eef3"
+  >KT</text>
+</svg>

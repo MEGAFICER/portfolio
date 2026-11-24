@@ -1,0 +1,43 @@
+---
+import type { PageMeta } from '../../lib/seo';
+import { withBase } from '../../lib/paths';
+
+interface Props {
+  meta: PageMeta;
+  base: string;
+}
+
+const { meta, base } = Astro.props;
+const favicon = withBase(base, 'favicon.svg');
+const appleIcon = withBase(base, 'apple-touch-icon.png');
+---
+
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+<link rel="canonical" href={meta.canonical} />
+<meta name="robots" content={meta.robots} />
+<meta name="author" content="Khang Nguyen Tran" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={meta.type} />
+<meta property="og:site_name" content={meta.siteName} />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:url" content={meta.canonical} />
+<meta property="og:image" content={meta.image} />
+<meta property="og:image:alt" content={meta.siteName} />
+<meta property="og:locale" content="en_CA" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content={meta.twitterCard} />
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={meta.image} />
+
+<!-- Browser chrome -->
+<meta name="theme-color" content="#f4f6f8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a0d10" media="(prefers-color-scheme: dark)" />
+
+<link rel="icon" href={favicon} type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href={appleIcon} sizes="180x180" />
+<link rel="sitemap" href={withBase(base, 'sitemap-index.xml')} />

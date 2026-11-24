@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Runs on every commit. Keeps a broken state from ever entering history:
+#   1. lint-staged  — ESLint --fix + Prettier on staged files
+#   2. astro check  — full TypeScript/diagnostics pass
+#   3. vitest       — the full unit suite (README requirement)
+# The heavier e2e/Lighthouse gates run in CI. See docs/adr/ADR-0012-pre-commit-gate.md
+
+echo "▸ lint-staged (eslint --fix, prettier)"
+npx lint-staged || exit 1
+
+echo "▸ astro check"
+npm run check --silent || exit 1
+
+echo "▸ unit tests"
+npm run test --silent || exit 1

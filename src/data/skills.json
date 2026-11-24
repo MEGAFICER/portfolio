@@ -1,0 +1,65 @@
+{
+  "intro": "What I actually drive, and the tools I drive it with. Grouped the way a PD team divides the work.",
+  "groups": [
+    {
+      "name": "Implementation",
+      "items": [
+        "Floorplanning",
+        "Placement",
+        "CTS",
+        "Routing",
+        "Congestion optimization",
+        "Power planning and RLRP",
+        "Functional, timing and metal ECO",
+        "Chip finishing"
+      ]
+    },
+    {
+      "name": "Timing and constraints",
+      "items": [
+        "Setup and hold closure",
+        "Multi-corner PVT analysis",
+        "SDC development and debug",
+        "Skew groups and insertion delay",
+        "Clock-gating setup trade-offs",
+        "ULVT and library swapping",
+        "Path-group prioritization",
+        "Pre- and post-route optimization"
+      ]
+    },
+    {
+      "name": "Signoff",
+      "items": [
+        "DRC",
+        "LVS",
+        "ERC",
+        "PERC",
+        "FPPG",
+        "IR-drop and EM (Voltus)",
+        "Early physical verification",
+        "Post-route DRC"
+      ]
+    },
+    {
+      "name": "Tools",
+      "items": [
+        "Cadence Innovus",
+        "Cadence Thunder",
+        "Cadence Voltus",
+        "Synopsys PrimeTime",
+        "Synopsys PrimeClosure",
+        "Siemens Calibre",
+        "Synopsys ICC2",
+        "Synopsys Verdi"
+      ]
+    },
+    {
+      "name": "Scripting",
+      "items": ["Tcl", "AWK", "C-shell", "Python", "Perl"]
+    },
+    {
+      "name": "Platform",
+      "items": ["Linux", "Revision-controlled flow scripts", "Grid-based regression runs"]
+    }
+  ]
+}

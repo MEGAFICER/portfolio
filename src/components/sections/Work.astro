@@ -1,0 +1,181 @@
+---
+import { caseStudies } from '../../data';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="section" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <SectionHeader
+      id="work-title"
+      index="02"
+      kicker="Selected work"
+      title="Three blocks, three different problems"
+      lede={caseStudies.intro}
+    />
+
+    <div class="work__list">
+      {caseStudies.studies.map((study) => (
+        <article class="work__case card ticked reveal" aria-labelledby={`case-${study.id}`}>
+          <header class="work__head">
+            <p class="work__context mono">{study.context}</p>
+            <h3 class="work__name" id={`case-${study.id}`}>
+              {study.name}
+            </h3>
+          </header>
+
+          <dl class="work__scale">
+            {study.scale.map((metric) => (
+              <div class="metric">
+                <dt class="metric__label">{metric.label}</dt>
+                <dd class="metric__value">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="work__body">
+            <div class="work__block">
+              <h4 class="work__label">The problem</h4>
+              <p>{study.problem}</p>
+            </div>
+
+            <div class="work__block">
+              <h4 class="work__label">What I did</h4>
+              <ul class="work__actions">
+                {study.approach.map((action) => (
+                  <li>{action}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="work__block work__block--outcome">
+              <h4 class="work__label">Outcome</h4>
+              <p>{study.outcome}</p>
+            </div>
+          </div>
+
+          <ul class="chip-row work__tags">
+            {study.tags.map((tag) => (
+              <li class="chip">{tag}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work__list {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .work__case {
+    display: grid;
+    gap: var(--space-5);
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+  }
+
+  .work__head {
+    display: grid;
+    gap: var(--space-2);
+    max-width: 46rem;
+  }
+
+  .work__context {
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .work__name {
+    font-size: var(--step-3);
+  }
+
+  .work__scale {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding-block: var(--space-4);
+    border-block: var(--hairline) solid var(--border);
+  }
+
+  .work__scale dd {
+    margin: 0;
+  }
+
+  .work__body {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work__block {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .work__block p {
+    color: var(--text-muted);
+    max-width: 74ch;
+  }
+
+  .work__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .work__actions {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 78ch;
+  }
+
+  .work__actions li {
+    position: relative;
+    padding-left: var(--space-5);
+    color: var(--text-muted);
+  }
+
+  .work__actions li::before {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.7em;
+    width: 6px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .work__block--outcome p {
+    color: var(--text);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--accent);
+  }
+
+  .work__tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 64rem) {
+    .work__body {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .work__block:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import { leadership } from '../../data';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="section" id="mentoring" aria-labelledby="mentoring-title">
+  <div class="container">
+    <SectionHeader
+      id="mentoring-title"
+      index="06"
+      kicker="Mentoring"
+      title="Teaching the flow, not just running it"
+      lede={leadership.intro}
+    />
+
+    <ul class="grid grid--three leadership">
+      {leadership.items.map((item) => (
+        <li class="card reveal">
+          <h3 class="leadership__title">{item.title}</h3>
+          <p class="leadership__detail">{item.detail}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .leadership {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .leadership :global(.card) {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+
+  .leadership__title {
+    font-size: var(--step-1);
+  }
+
+  .leadership__detail {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+</style>

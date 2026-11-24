@@ -1,0 +1,260 @@
+---
+import { SECTIONS } from '../../lib/nav';
+import { withBase } from '../../lib/paths';
+import { profile } from '../../data';
+import DownloadResume from '../ui/DownloadResume.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const base = import.meta.env.BASE_URL;
+const anchor = (id: string) => withBase(base, `#${id}`);
+---
+
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href={anchor('top')}>
+      <span class="brand__mark mono" aria-hidden="true">
+        KT
+      </span>
+      <span class="brand__name">
+        <span class="brand__full">{profile.name}</span>
+        <span class="brand__role mono">{profile.role}</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Sections">
+      <ul class="site-nav__list">
+        {SECTIONS.map((section) => (
+          <li>
+            <a class="site-nav__link mono" href={anchor(section.id)}>
+              {section.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <DownloadResume variant="compact" label="Resume" />
+      <ThemeToggle />
+    </div>
+
+    <details class="site-menu">
+      <summary class="site-menu__summary mono">
+        <span>Menu</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" width="14" height="14">
+          <path d="M2 4.5h12v1.5H2zM2 9.5h12V11H2z"></path>
+        </svg>
+      </summary>
+      <nav aria-label="Sections" class="site-menu__nav">
+        <ul>
+          {SECTIONS.map((section) => (
+            <li>
+              <a class="site-menu__link" href={anchor(section.id)}>
+                {section.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    border-bottom: var(--hairline) solid var(--border);
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px) saturate(120%);
+  }
+
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+    margin-right: auto;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .brand:hover {
+    color: var(--text);
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: var(--hairline) solid var(--border-strong);
+    border-radius: var(--radius-xs);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    background: var(--surface);
+  }
+
+  .brand__name {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.15;
+  }
+
+  .brand__full {
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .brand__role {
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-xs);
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition:
+      color var(--dur-1) var(--ease-out),
+      background-color var(--dur-1) var(--ease-out);
+  }
+
+  .site-nav__link:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .site-menu {
+    display: none;
+    position: relative;
+  }
+
+  .site-menu__summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.25rem;
+    padding: var(--space-1) var(--space-3);
+    border: var(--hairline) solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .site-menu__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .site-menu[open] .site-menu__summary {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+
+  .site-menu__nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--space-2));
+    min-width: 12rem;
+    padding: var(--space-2);
+    border: var(--hairline) solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow);
+  }
+
+  .site-menu__nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-menu__link {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-xs);
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .site-menu__link:hover {
+    background: var(--surface-2);
+    color: var(--accent);
+  }
+
+  @media (max-width: 62rem) {
+    .site-nav {
+      display: none;
+    }
+
+    .site-menu {
+      display: block;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .brand__role {
+      display: none;
+    }
+
+    /* The hero and contact sections carry the same primary action; dropping
+       the compact button here is what keeps a 320 px header on one line. */
+    .site-header__actions :global(.btn--compact) {
+      display: none;
+    }
+
+    .site-header__actions :global(.theme-toggle__label) {
+      display: none;
+    }
+
+    .site-header__actions :global(.theme-toggle) {
+      min-width: 2.75rem;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+{
+  "intro": "Three blocks that show the range: a multi-million-instance implementation problem, a constraint-and-corner debugging problem, and a signoff problem. Customer names and product identifiers are withheld; the numbers are real.",
+  "studies": [
+    {
+      "id": "noc",
+      "name": "3.7M-instance networking block",
+      "context": "7nm-class advanced node · taped out",
+      "scale": [
+        { "value": "3.7M", "label": "instances" },
+        { "value": "20.2K", "label": "pins" },
+        { "value": "801 MHz", "label": "target clock" },
+        { "value": "GDSII", "label": "delivered" }
+      ],
+      "problem": "A 3.7M-instance network-on-chip block with 20.2K boundary pins, a ~801 MHz target, and a large feedthrough population — signals entering and leaving through the block without being registered. Placement produced local density hot spots, routing congestion stopped responding to global effort settings, and the clock tree re-opened reg2reg and reg2icg paths after CTS.",
+      "approach": [
+        "Treated congestion as a diagnosis problem, not a switch: module padding to cut local density, partial placement and partial blockage in the hottest regions, module redistribution, block-shape expansion when instance count grew, re-floorplanning when top-level requirements changed, and pin relocation that protected reg2mem/mem2reg timing.",
+        "Ran manual CTS on the hardest reg2reg and reg2icg groups, tuning insertion delay to roughly 200 ps and validating a ~300 ps alternative, together with clock-latency and clock-gating-setup trade-offs.",
+        "Applied ULVT cells to critical paths and UFK where it measurably helped, and disabled restructuring after data showed it degraded preCTS timing.",
+        "Escalated a ~94-logic-level path to the logic team with evidence that no physically reasonable placement could close it.",
+        "Wrote a Tcl check that verified instance locations after refinePlace during ECO, catching the cases where ECO placement silently moved cells."
+      ],
+      "outcome": "Clean GDSII at ~801 MHz with feedthrough connectivity intact, DRC/LVS/FPPG closed, and a congestion playbook the team reused on later blocks.",
+      "tags": ["Floorplan", "Congestion", "CTS", "Timing closure", "ECO", "Signoff"]
+    },
+    {
+      "id": "wrapper",
+      "name": "1.4M-instance wrapper / EMI block",
+      "context": "16nm-class node · taped out",
+      "scale": [
+        { "value": "1.4M", "label": "instances" },
+        { "value": "13K", "label": "pins" },
+        { "value": "528 MHz", "label": "target clock" },
+        { "value": "Multi-corner", "label": "closure" }
+      ],
+      "problem": "A 1.4M-instance wrapper block at 528 MHz, 13K pins and heavy feedthrough traffic. Timing failures did not line up with the constraints the block had been handed, and the corner set made optimization targets ambiguous — the tool was chasing the wrong PVT corner.",
+      "approach": [
+        "Used set_path_group to prioritize the path groups that actually mattered, so optimization effort stopped being spread evenly across the design.",
+        "Applied module guiding to place critical logic where congestion and timing both allowed it, instead of solving one and breaking the other.",
+        "Audited the SDC, found mismatched and incorrect constraints, fixed them, and fed the corrections back to the constraint owners.",
+        "Analysed how Innovus optimized each PVT corner, identified the incorrect corner setup, and selected the right corner for implementation."
+      ],
+      "outcome": "Timing closed on a correct multi-corner set and the block taped out. The constraint and corner fixes removed the same class of failure from subsequent blocks in the programme.",
+      "tags": ["SDC", "Multi-corner", "set_path_group", "Module guiding", "Timing closure"]
+    },
+    {
+      "id": "ddr-phy",
+      "name": "DDR PHY datapath blocks",
+      "context": "14nm-class node · taped out",
+      "scale": [
+        { "value": "13.4K", "label": "cells, NS block" },
+        { "value": "10.7K", "label": "cells, EW block" },
+        { "value": "2", "label": "orientations" },
+        { "value": "Tape-out", "label": "supported" }
+      ],
+      "problem": "A DDR PHY delivered as paired north-south and east-west blocks, plus additional variants, each needing complete physical implementation and a signoff-clean handoff to tape-out.",
+      "approach": [
+        "Ran the full flow per block: floorplan, placement, CTS, routing, setup and hold analysis and fixing.",
+        "Closed setup and hold on the memory interface, where the hard macro boundaries constrain both placement and timing.",
+        "Cleared FPPG, DRC/PV and LVS, and did the final signoff cleanup in the window before tape-out.",
+        "Repeated the flow across the additional NS/EW variants so the delivered family stayed consistent."
+      ],
+      "outcome": "Taped out with physical verification clean. The paired-orientation work made the NS/EW variant flow routine rather than bespoke.",
+      "tags": ["Full flow", "Setup/hold", "FPPG", "DRC/LVS", "Tape-out"]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "intro": "3.5 years of production physical design, plus the training and internship work that led into it. Reverse chronological, most recent first.",
+  "roles": [
+    {
+      "company": "Faraday Technology",
+      "role": "Physical Design Engineer",
+      "period": "Mar 2023 – Jul 2026",
+      "duration": "3 yrs 5 mos",
+      "location": "Vietnam",
+      "type": "Full-time",
+      "summary": "Owned implementation and signoff on taped-out blocks for external SoC customers, from floorplan through GDSII, across 7nm, 16nm and 14nm-class nodes.",
+      "highlights": [
+        "Took blocks from netlist to GDSII at up to 3.7M instances and ~801 MHz, including feedthrough-heavy blocks with 13K–20K boundary pins.",
+        "Closed setup and hold across multi-corner PVT in PrimeTime and PrimeClosure, including timing ECOs and metal-only ECOs on signoff-bound data.",
+        "Diagnosed congestion and clock-tree problems at the root cause — module padding, partial placement and blockage, module redistribution, block-shape expansion, re-floorplanning and pin relocation — instead of applying one global fix.",
+        "Drove CTS debug on reg2reg and reg2icg paths with manual CTS, clock insertion-delay and latency tuning, clock-gating setup adjustments and ULVT library swaps.",
+        "Signed off DRC, LVS, ERC, PERC and FPPG in Calibre, and IR/EM in Voltus; ran early physical verification and post-route DRC to keep violations from reaching tape-out.",
+        "Wrote Tcl and AWK automation for repetitive checks, including a refinePlace location checker that caught ECO placements moving instances unexpectedly.",
+        "Mentored 2 interns, served as internship mentor lead, and authored the training plan and material for floorplan, preCTS, routing and the basic PD flow."
+      ],
+      "technologies": [
+        "Innovus",
+        "Thunder",
+        "Voltus",
+        "PrimeTime",
+        "PrimeClosure",
+        "Calibre",
+        "Tcl",
+        "AWK",
+        "ECO",
+        "Signoff"
+      ]
+    },
+    {
+      "company": "Uniquify Vietnam",
+      "formerName": "formerly Ideas2Silicon Vietnam",
+      "role": "Physical Design Engineer (Intern)",
+      "period": "Dec 2022 – Mar 2023",
+      "duration": "4 mos",
+      "location": "Ho Chi Minh City, Vietnam",
+      "type": "Internship",
+      "summary": "Entry into production physical design: flow fundamentals, scripting, and the handoff from RTL to layout.",
+      "highlights": [
+        "Learned Tcl, AWK, Perl and C-shell scripting for design-flow automation.",
+        "Built working knowledge of CMOS devices and the VLSI flow from specification to fabrication.",
+        "Practised basic physical design steps under senior engineer review."
+      ],
+      "technologies": ["Tcl", "AWK", "Perl", "C-shell", "CMOS", "VLSI flow"]
+    },
+    {
+      "company": "Synopsys",
+      "role": "Physical Design Engineer (Trainee)",
+      "period": "Oct 2022 – Nov 2022",
+      "duration": "2 mos",
+      "location": "Ho Chi Minh City, Vietnam",
+      "type": "Part-time training program",
+      "summary": "Selected for the Synopsys Fast Track Training Program; completed with a certificate of completion.",
+      "highlights": [
+        "Ran the physical design flow in ICC2 as part of structured lab work.",
+        "Wrote RTL for a full adder and verified it in Verdi.",
+        "Covered scripting for flow automation and the IC design flow from specification to fabrication.",
+        "Awarded the Certificate of Completion, Synopsys Fast Track Training Program."
+      ],
+      "technologies": ["ICC2", "Verdi", "RTL", "Tcl"]
+    }
+  ]
+}

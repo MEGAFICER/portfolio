@@ -1,0 +1,108 @@
+---
+import { profile } from '../../data';
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const principles = [
+  {
+    title: 'Diagnose, then optimize',
+    body: 'Congestion and clock-tree failures often share symptoms and not causes. I choose between padding, partial placement, redistribution, shape changes and pin moves based on what the reports say, and I keep a change only when it measurably helps.',
+  },
+  {
+    title: 'Automate the checks that repeat',
+    body: 'ECO placement drift, DRC triage, report parsing: if I do it a third time, it becomes Tcl, AWK or Python. Automation is how a block stays closable when the team is small and the schedule is not.',
+  },
+  {
+    title: 'Signoff is the deliverable',
+    body: 'A block is done when DRC, LVS, FPPG and timing all agree — not when the last timing report looks green. I own the cleanup, the ECOs and the final handoff to tape-out.',
+  },
+];
+---
+
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <SectionHeader
+      id="about-title"
+      index="01"
+      kicker="About"
+      title="Physical design, end to end"
+      lede="Tape-out experience on 7nm, 16nm and 14nm-class blocks, from floorplan through signoff."
+    />
+
+    <div class="about__grid">
+      <div class="prose about__copy reveal">
+        <p>{profile.summary}</p>
+        <p>
+          I am now a full-time Master of Engineering student at the University of Ottawa, after 3.5
+          years in production physical design. The target is straightforward: keep working on
+          advanced-node implementation, and grow into the engineer who owns the hard blocks and the
+          methodology around them.
+        </p>
+      </div>
+
+      <ul class="about__principles">
+        {principles.map((principle, index) => (
+          <li class="about__principle reveal">
+            <span class="about__index numeric" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 class="about__principle-title">{principle.title}</h3>
+            <p>{principle.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .about__copy p {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+  }
+
+  .about__principles {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .about__principle {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border: var(--hairline) solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+
+  .about__principle p {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .about__index {
+    font-size: var(--step--2);
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .about__principle-title {
+    font-size: var(--step-1);
+  }
+
+  @media (max-width: 56rem) {
+    .about__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

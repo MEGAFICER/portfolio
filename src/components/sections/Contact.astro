@@ -1,0 +1,226 @@
+---
+import { profile } from '../../data';
+import DownloadResume from '../ui/DownloadResume.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const mailto = `mailto:${profile.email}`;
+const tel = `tel:${profile.phone.href}`;
+---
+
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <SectionHeader
+      id="contact-title"
+      index="08"
+      kicker="Contact"
+      title="Hiring for a Winter 2027 or Summer 2027 term?"
+      lede="I reply to every message. Send a role description, a time to talk, or a block that needs closing."
+    />
+
+    <div class="contact">
+      <div class="contact__main card ticked reveal">
+        <p class="chip chip--accent">{profile.availability.status}</p>
+
+        <a class="contact__email" href={mailto}>
+          <span class="contact__email-label mono">Email</span>
+          <span class="contact__email-value">{profile.email}</span>
+        </a>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__key mono">Phone</span>
+            <a class="contact__value" href={tel}>
+              {profile.phone.display}
+            </a>
+          </li>
+          <li>
+            <span class="contact__key mono">LinkedIn</span>
+            <a
+              class="contact__value"
+              href={profile.links.linkedin}
+              rel="me noopener"
+              target="_blank"
+            >
+              linkedin.com/in/khangnguyentran
+            </a>
+          </li>
+          <li>
+            <span class="contact__key mono">GitHub</span>
+            <a class="contact__value" href={profile.links.github} rel="me noopener" target="_blank">
+              github.com/MEGAFICER
+            </a>
+          </li>
+          <li>
+            <span class="contact__key mono">Based in</span>
+            <span class="contact__value">{profile.location.display}</span>
+          </li>
+        </ul>
+
+        <div class="contact__actions">
+          <DownloadResume />
+          <a class="btn btn--ghost" href={profile.links.linkedin} rel="me noopener" target="_blank">
+            Message on LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <aside class="contact__aside reveal" aria-label="Availability details">
+        <ul class="contact__terms">
+          {profile.availability.terms.map((term) => (
+            <li>
+              <p class="contact__term mono">{term.term}</p>
+              <p class="contact__term-detail">{term.detail}</p>
+            </li>
+          ))}
+        </ul>
+        <div class="contact__facts">
+          <p class="label">Regions</p>
+          <p>{profile.availability.regions.join(' · ')}</p>
+          <p class="label">Modes</p>
+          <p>{profile.availability.modes.join(' · ')}</p>
+          <p class="label">Target roles</p>
+          <p>{profile.targetRoles.join(' · ')}</p>
+        </div>
+        <p class="small">{profile.availability.note}</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    align-items: start;
+  }
+
+  .contact__main {
+    display: grid;
+    gap: var(--space-5);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    justify-items: start;
+  }
+
+  .contact__main :global(.chip) {
+    white-space: normal;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .contact__email {
+    display: grid;
+    gap: var(--space-1);
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .contact__email-label {
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .contact__email-value {
+    font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid var(--border-strong);
+    transition:
+      color var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out);
+  }
+
+  .contact__email:hover .contact__email-value {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .contact__list {
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact__list li {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: var(--hairline) solid var(--border);
+  }
+
+  .contact__key {
+    font-size: var(--step--2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding-top: 0.15em;
+  }
+
+  .contact__value {
+    font-size: var(--step--1);
+    overflow-wrap: anywhere;
+  }
+
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .contact__aside {
+    display: grid;
+    gap: var(--space-5);
+    padding-left: var(--space-5);
+    border-left: var(--hairline) solid var(--border);
+  }
+
+  .contact__terms {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact__term {
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .contact__term-detail {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .contact__facts {
+    display: grid;
+    gap: var(--space-1);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .contact__facts p:not(.label) {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 56rem) {
+    .contact {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact__aside {
+      padding-left: 0;
+      padding-top: var(--space-5);
+      border-left: 0;
+      border-top: var(--hairline) solid var(--border);
+    }
+  }
+</style>

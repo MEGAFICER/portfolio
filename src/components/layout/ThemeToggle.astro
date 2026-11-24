@@ -1,0 +1,108 @@
+---
+/**
+ * Three-state theme control: system → light → dark → system.
+ * The visible label states the current preference; the accessible name states
+ * what pressing the button will do.
+ */
+---
+
+<button
+  class="theme-toggle"
+  type="button"
+  data-theme-toggle
+  aria-label="auto theme — following your device. Switch to light theme."
+  title="Switch theme"
+>
+  <svg class="theme-toggle__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 1.5v15a7.5 7.5 0 0 0 0-15Z"></path>
+  </svg>
+  <span class="theme-toggle__label mono" data-theme-label>
+    auto
+  </span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.25rem;
+    min-width: 4.5rem;
+    padding: var(--space-1) var(--space-3);
+    border: var(--hairline) solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    background: transparent;
+    transition:
+      color var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out),
+      background-color var(--dur-1) var(--ease-out);
+  }
+
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background: var(--surface-2);
+  }
+
+  .theme-toggle__icon {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+
+  .theme-toggle__label {
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  import {
+    applyTheme,
+    nextPreference,
+    readStoredPreference,
+    resolveTheme,
+    storePreference,
+    themeShortLabel,
+    themeToggleLabel,
+  } from '../../lib/theme';
+
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const label = document.querySelector<HTMLElement>('[data-theme-label]');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  let storage: Storage | null = null;
+  try {
+    storage = window.localStorage;
+  } catch {
+    /* private mode / blocked storage: theme still works for this session */
+  }
+
+  let preference = readStoredPreference(storage);
+
+  function render(): void {
+    const resolved = resolveTheme(preference, media.matches);
+    applyTheme(document, resolved);
+
+    if (button) {
+      const name = themeToggleLabel(preference, resolved);
+      button.setAttribute('aria-label', name);
+      button.setAttribute('title', name);
+    }
+    if (label) label.textContent = themeShortLabel(preference);
+  }
+
+  button?.addEventListener('click', () => {
+    preference = nextPreference(preference);
+    storePreference(storage, preference);
+    render();
+  });
+
+  media.addEventListener('change', () => {
+    if (preference === 'system') render();
+  });
+
+  render();
+</script>

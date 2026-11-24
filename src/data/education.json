@@ -1,0 +1,42 @@
+{
+  "degrees": [
+    {
+      "degree": "Master of Engineering, Electrical and Computer Engineering",
+      "school": "University of Ottawa",
+      "location": "Ottawa, Ontario, Canada",
+      "period": "Sep 2026 – May 2028 (expected)",
+      "detail": "Full-time graduate study, currently in progress."
+    },
+    {
+      "degree": "Bachelor of Engineering, Electrical and Electronics Engineering",
+      "school": "Ho Chi Minh City University of Technology",
+      "location": "Ho Chi Minh City, Vietnam",
+      "period": "Sep 2018 – Apr 2023",
+      "detail": "GPA 8.09/10. Certificate of Achievement for outstanding academic performance, 2022."
+    }
+  ],
+  "research": [
+    {
+      "title": "High-performance D flip-flop design in 45 nm",
+      "kind": "Graduation thesis",
+      "period": "2023",
+      "detail": "Designed and compared SET, DET, TSPC and C2MOS flip-flops for low power and high speed, comparing transistor count, average power and propagation delay from simulation, with layouts built in Cadence Layout Suite and simulated in Microwind."
+    },
+    {
+      "title": "Automated fertigation control system",
+      "kind": "Scientific research · hardware design",
+      "period": "Sep 2021 – Jun 2022",
+      "detail": "Designed the fertigation and injection system that runs under automatic control, taking the control hardware from concept to a working automatic mode."
+    }
+  ],
+  "awards": [
+    {
+      "title": "Certificate of Completion — Synopsys Fast Track Training Program",
+      "year": "2022"
+    },
+    {
+      "title": "Certificate of Achievement — Outstanding Academic Performance",
+      "year": "2022"
+    }
+  ]
+}

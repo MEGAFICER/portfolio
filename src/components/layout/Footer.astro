@@ -1,0 +1,92 @@
+---
+import { profile } from '../../data';
+import { withBase } from '../../lib/paths';
+import { resumeHref } from '../../lib/resume';
+
+const base = import.meta.env.BASE_URL;
+const mailto = `mailto:${profile.email}`;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__id">
+      <p class="label">{profile.name}</p>
+      <p class="small">
+        {profile.role} · {profile.location.display}
+      </p>
+    </div>
+
+    <ul class="site-footer__links">
+      <li>
+        <a class="link" href={profile.links.linkedin} rel="me noopener" target="_blank">
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a class="link" href={profile.links.github} rel="me noopener" target="_blank">
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a class="link" href={mailto}>
+          Email
+        </a>
+      </li>
+      <li>
+        <a class="link" href={resumeHref(base)} download>
+          Resume (PDF)
+        </a>
+      </li>
+    </ul>
+
+    <p class="small site-footer__meta">
+      Built with Astro and served from GitHub Pages. No trackers, no cookies, no third-party
+      scripts. © {new Date().getFullYear()} {profile.name}.{' '}
+      <a class="link" href={withBase(base, '#top')}>
+        Back to top
+      </a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--hairline) solid var(--border);
+    padding-block: var(--space-7);
+    background: var(--surface);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    align-items: start;
+  }
+
+  .site-footer__id {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-self: center;
+  }
+
+  .site-footer__links a {
+    min-height: 1.75rem;
+    font-size: var(--step--1);
+  }
+
+  .site-footer__meta {
+    grid-column: 1 / -1;
+    padding-top: var(--space-4);
+    border-top: var(--hairline) solid var(--border);
+    font-size: var(--step--1);
+  }
+</style>

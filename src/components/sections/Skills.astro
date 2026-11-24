@@ -1,0 +1,77 @@
+---
+import { skills } from '../../data';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="section" id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <SectionHeader
+      id="skills-title"
+      index="05"
+      kicker="Toolchain"
+      title="What I drive, and where"
+      lede={skills.intro}
+    />
+
+    <div class="skills">
+      {skills.groups.map((group) => (
+        <section class="skills__group reveal" aria-labelledby={`skills-${group.name}`}>
+          <h3 class="skills__name" id={`skills-${group.name}`}>
+            {group.name}
+          </h3>
+          <ul class="skills__items">
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    border-top: var(--hairline) solid var(--border);
+    border-left: var(--hairline) solid var(--border);
+  }
+
+  .skills__group {
+    padding: var(--space-5);
+    border-right: var(--hairline) solid var(--border);
+    border-bottom: var(--hairline) solid var(--border);
+    background: var(--surface);
+  }
+
+  .skills__name {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .skills__items {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .skills__items li {
+    padding-bottom: 0.35rem;
+    border-bottom: 1px dashed color-mix(in oklab, var(--border) 70%, transparent);
+  }
+
+  .skills__items li:last-child {
+    border-bottom: 0;
+  }
+</style>

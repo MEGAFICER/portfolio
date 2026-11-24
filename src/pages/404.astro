@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Page not found — Khang Nguyen Tran"
+  description="That page does not exist. Return to the portfolio of Khang Nguyen Tran, Physical Design Engineer."
+  path="404"
+  noIndex
+>
+  <section class="section section--flush not-found">
+    <div class="container not-found__inner">
+      <p class="label">Error 404</p>
+      <h1 class="not-found__title">This route does not exist.</h1>
+      <p class="not-found__body">
+        The layout you are looking for was not placed. Everything on this site lives on one page.
+      </p>
+      <p>
+        <a class="btn" href={withBase(base, '#top')}>
+          Back to the portfolio
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found__inner {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+    padding-block: clamp(4rem, 12vh, 8rem);
+  }
+
+  .not-found__title {
+    font-size: var(--step-4);
+  }
+
+  .not-found__body {
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+</style>

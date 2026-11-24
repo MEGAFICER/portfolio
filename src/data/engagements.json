@@ -1,0 +1,25 @@
+{
+  "intro": "The rest of the work, kept short: what the problem was and what was actually done.",
+  "items": [
+    {
+      "name": "94K-cell test chip",
+      "meta": ["93.9K standard cells", "114 memories", "56 TMU cell blocks"],
+      "body": "Floorplan cleanup, timing closure, power-integrity analysis and physical verification on a memory-heavy test chip. Debugged mem2out, in2out, in2mem and reg2reg paths; traced violations back to virtual-clock constraints and returned constraint fixes to the owners; closed large memory-interface hold violations; analysed IR-drop around memory regions and improved the power network and RLRP; fixed DRC and FAB_DRC and ran LVS."
+    },
+    {
+      "name": "GPU blocks — preCTS and CTS",
+      "meta": ["preCTS", "CTS", "Congestion", "Timing"],
+      "body": "Ran and analysed preCTS and CTS on GPU blocks: cluster-mode CTS analysis, skew-group analysis, long clock-latency debugging and module-distribution work. Optimized congestion and density, adjusted placement for timing, and debugged timing differences between Innovus and ICC2 on the same data."
+    },
+    {
+      "name": "Metal ECO and signoff",
+      "meta": ["Function ECO", "Timing ECO", "Metal ECO", "Full-flatten checks"],
+      "body": "Implemented functional, timing and metal-only ECOs, including netlist handling for metal-layer changes. Re-ran timing, DRC, LVS and FPPG after each ECO, and ran full-flatten top-level FESD and LVL checks before signoff."
+    },
+    {
+      "name": "Chip-top physical verification",
+      "meta": ["Chip-top", "Base layer", "Metal layer", "Script-accelerated"],
+      "body": "Chip-top PV support: base-layer and metal-layer DRC debugging, determining whether a violation originated in the block or at top level, fixing chip-top DRC, and scripting the debug loop so large violation sets could be triaged quickly."
+    }
+  ]
+}

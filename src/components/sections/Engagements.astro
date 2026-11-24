@@ -1,0 +1,59 @@
+---
+import { engagements } from '../../data';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="section" id="engagements" aria-labelledby="engagements-title">
+  <div class="container">
+    <SectionHeader
+      id="engagements-title"
+      index="04"
+      kicker="Supporting work"
+      title="Everything else that shipped"
+      lede={engagements.intro}
+    />
+
+    <ul class="grid grid--two engagements">
+      {engagements.items.map((item) => (
+        <li class="card reveal">
+          <h3 class="engagements__name">{item.name}</h3>
+          <ul class="chip-row engagements__meta">
+            {item.meta.map((meta) => (
+              <li class="chip">{meta}</li>
+            ))}
+          </ul>
+          <p class="engagements__body">{item.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .engagements {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .engagements :global(.card) {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+  }
+
+  .engagements__name {
+    font-size: var(--step-1);
+  }
+
+  .engagements__meta {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .engagements__body {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+</style>

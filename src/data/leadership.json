@@ -1,0 +1,17 @@
+{
+  "intro": "Mentoring is the part of senior engineering that does not show up in a timing report. I have done it deliberately, with a plan and material, not as an afterthought.",
+  "items": [
+    {
+      "title": "Mentored 2 interns through a full design cycle",
+      "detail": "Set their technical direction, reviewed their work, and got both to a point where their blocks could go through review without rescue."
+    },
+    {
+      "title": "Internship mentor lead",
+      "detail": "Coordinated the internship programme: prepared the internship and training plans and kept the mentoring consistent across the group."
+    },
+    {
+      "title": "Built and delivered the training material",
+      "detail": "Taught floorplanning, preCTS, routing and the basic physical design flow to fresh engineers, using the same blocks and checks the production flow uses."
+    }
+  ]
+}
